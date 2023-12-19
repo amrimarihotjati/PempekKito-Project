@@ -1,17 +1,62 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Button, Counter, Rating } from '../../components'
+import { Button, Counter, Number, Rating } from '../../components'
+import { getData } from '../../utils'
 
-const FoodDetail = ({ navigation }: any) => {
+const FoodDetail = ({ navigation, route }: any) => {
+
+    const { id, name, picturePatch, description, ingredients, rate, price } = route.params;
+    const [totaItem, setTotalItem] = useState(1);
+    const [userProfile, setUserProfile] = useState({});
+
+    const onQuantityChange = (value: number) => {
+        setTotalItem(value);
+    }
+
+    useEffect(() => {
+        getData('userProfile').then((res) => {
+            setUserProfile(res);
+        })
+    }, [])
+
+    const onOrder = () => {
+        const totalPrice = totaItem * price;
+        const driver = 10000;
+        const tax = 10 / 100 * totalPrice;
+        const grandTotal = totalPrice + tax + driver;
+
+        const data = {
+            item: {
+                id: id,
+                name: name,
+                picturePatch: picturePatch,
+                price: price,
+            },
+            transaction: {
+                totalItem: totaItem,
+                totalPrice: totalPrice,
+                driver: driver,
+                tax: tax,
+                grandTotal: grandTotal
+            },
+            userProfile
+        };
+
+        navigation.navigate('OrderSummary', data);
+    }
+
+
+
     return (
         <View style={styles.page}>
             <ImageBackground
-                source={require('../../assets/Dummy/pempek_1.jpeg')}
+                source={{ uri: picturePatch }}
                 style={styles.cover}
             >
                 <TouchableOpacity
                     style={styles.back}
+                    onPress={() => navigation.goBack()}
                 >
                     <Text>X</Text>
                 </TouchableOpacity>
@@ -29,34 +74,33 @@ const FoodDetail = ({ navigation }: any) => {
                         <View>
                             <Text
                                 style={styles.title}
-                            >Pempek</Text>
-                            <Rating />
+                            >{name}</Text>
+                            <Rating ratingNumber={rate} />
                         </View>
-                        <Counter />
+                        <Counter onQuantityChange={onQuantityChange} />
                     </View>
                     <Text
                         style={styles.desc}
-                    >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate consectetur, similique deleniti pariatur, porro id facere laudantium aliquam eligendi autem, ipsam rem earum dolor recusandae eveniet fugit aut dolore magnam.</Text>
+                    >{description}</Text>
                     <Text
                         style={styles.ingredients}
                     >Ingredients</Text>
                     <Text
                         style={styles.desc}
-                    >Ikan tenggiri, sagu, garam</Text>
+                    >{ingredients}</Text>
                 </View>
                 <View
                     style={styles.priceContainer}
                 >
                     <View>
                         <Text>Total Price</Text>
-                        <Text
-                            style={styles.totalPrice}
-                        >Rp. 20.000</Text>
+                        <Number
+                            number={totaItem * price} type='' style={styles.totalPrice} />
                     </View>
                     <View>
                         <Button
                             title="Order Now"
-                            OnPress={() => navigation.navigate('OrderSummary')}
+                            OnPress={onOrder}
                         />
                     </View>
                 </View>
@@ -103,7 +147,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'Poppins-Regular',
         color: 'grey',
-        marginBottom: 4
+        marginBottom: 4,
+        textAlign: 'justify',
     },
     ingredients: {
         fontSize: 12,

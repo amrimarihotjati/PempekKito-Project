@@ -24,7 +24,7 @@ const SuccessSignUp = ({ navigation }: any) => {
             <View>
                 <Button
                     title="Find Pempek"
-                    OnPress={() => navigation.replace('MainApp')}
+                    OnPress={() => navigation.reset({ index: 0, routes: [{ name: 'MainApp' }] })}
                 />
             </View>
         </View>

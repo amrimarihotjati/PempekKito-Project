@@ -64,7 +64,7 @@ const SignUp = ({ navigation }: any) => {
                 <Header
                     title="Sign Up"
                     subTitle="Find your best Pempek"
-                    onBack={() => { }}
+                    onBack={() => { navigation.goBack() }}
                 />
                 <View style={styles.container}>
                     <TouchableOpacity

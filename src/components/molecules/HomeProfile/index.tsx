@@ -1,7 +1,20 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { useEffect, useState } from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import { getData } from '../../../utils'
+
 
 const HomeProfile = () => {
+    const [photo, setPhoto] = useState('http://foodmarketcms.test/storage/assets/user/wTdpLFI4Fv4TiYMuuzvZqwqWiOFWqt1x5iV7e97w.jpg');
+
+    console.log(photo)
+
+    useEffect(() => {
+        getData('userProfile').then((res) => {
+            console.log(res)
+            setPhoto(res.profile_photo_url);
+        })
+    }, [])
+
     return (
         <View
             style={styles.profileContainer}
@@ -16,7 +29,8 @@ const HomeProfile = () => {
             </View>
             <Image
                 style={styles.profile}
-                source={require('../../../assets/Dummy/profile.png')}
+                source={{ uri: photo }}
+                resizeMode="cover"
             />
         </View>
     )

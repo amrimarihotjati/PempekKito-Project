@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { useState } from 'react'
-import { Button, Gap, Header, TextInput } from '../../components'
-import { useFrom } from '../../utils';
-import axios from 'axios';
+import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Button, Gap, Header, TextInput } from '../../components';
+import { signInAction } from '../../redux/action/auth';
+import { getData, useFrom } from '../../utils';
+import { useEffect } from 'react';
 
 
 const Signin = ({ navigation }: any) => {
     // const [email, setEmail] = useState('');
     // const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
 
     const [form, setForm] = useFrom({
         email: '',
@@ -15,15 +18,7 @@ const Signin = ({ navigation }: any) => {
     });
 
     const onSignIn = () => {
-        console.log('Click SignIn');
-        axios.post('https://86f4-182-253-250-101.ngrok-free.app/api/login', form)
-            .then((res) => {
-                console.log('Sukses Login', res.data);
-                navigation.replace('MainApp');
-            })
-            .catch((err) => {
-                console.log('Error Login', err);
-            })
+        dispatch(signInAction(form, navigation));
     };
 
     return (

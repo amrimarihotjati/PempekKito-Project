@@ -3,9 +3,19 @@ import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import { ItemListMenu } from '..';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Account = () => {
     const navigation = useNavigation();
+    const signOut = () => {
+        console.log('Sign Out');
+        AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Signin' }],
+            });
+        })
+    }
 
     return (
         <View
@@ -17,7 +27,7 @@ const Account = () => {
             <ItemListMenu label="Home Address" />
             <ItemListMenu label="Security" />
             <ItemListMenu label="Payment" />
-            <ItemListMenu label="Log Out" />
+            <ItemListMenu label="Sign Out" onPress={signOut} />
         </View>
     )
 };

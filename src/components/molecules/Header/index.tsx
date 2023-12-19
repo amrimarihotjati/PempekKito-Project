@@ -14,6 +14,7 @@ const Header = ({ title, subTitle, onBack }: HeaderProps) => {
             {onBack && (
                 <TouchableOpacity
                     activeOpacity={0.7}
+                    onPress={onBack}
                 >
                     <Image
                         source={require('../../../assets/Icon/arrow_back.png')}

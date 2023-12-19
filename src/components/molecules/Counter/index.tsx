@@ -1,12 +1,35 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
-import React from 'react'
+import { useState, useEffect } from 'react'
 
-const Counter = () => {
+const Counter = ({ onQuantityChange }) => {
+    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        onQuantityChange(quantity);
+    })
+
+    const onCount = (type: string) => {
+        let result = quantity;
+
+        if (type === 'plus') {
+
+            result = quantity + 1
+
+        } else if (type === 'minus') {
+            if (quantity > 1) {
+                result = quantity - 1
+            }
+        }
+
+        setQuantity(result);
+        onQuantityChange(result);
+    }
+
     return (
         <View
             style={styles.container}
         >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => onCount('minus')}>
                 <Image
                     source={require('../../../assets/Icon/minus.png')}
                     style={styles.iconCounter}
@@ -15,9 +38,9 @@ const Counter = () => {
 
             <Text
                 style={styles.counter}
-            >16</Text>
+            >{quantity}</Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => onCount('plus')}>
                 <Image
                     source={require('../../../assets/Icon/plus.png')}
                     style={styles.iconCounter}

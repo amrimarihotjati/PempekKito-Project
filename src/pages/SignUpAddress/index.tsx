@@ -1,11 +1,11 @@
-import axios from 'axios'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Gap, Header, Select, TextInput } from '../../components'
-import { showMessage, useFrom } from '../../utils'
-import { setLoading } from '../../redux/action/index'
+import { setLoading, signUpAction } from '../../redux/action/index'
+import { useFrom } from '../../utils'
+
 
 const SignUpAddress = ({ navigation }: any) => {
     const [form, setForm] = useFrom({
@@ -20,41 +20,14 @@ const SignUpAddress = ({ navigation }: any) => {
 
 
     const onSignUp = () => {
-        console.log('Click SignUp', form)
+        // console.log('Click SignUp', form)
         const dataRegister = {
             ...form,
             ...registerReducer
         }
         // console.log('full data register', dataRegister)
         dispatch(setLoading(true))
-        axios.post('https://86f4-182-253-250-101.ngrok-free.app/api/register', dataRegister)
-            .then((res: any) => {
-                if (photoReducer.isUploadPhoto) {
-                    const dataPhoto = new FormData();
-                    dataPhoto.append('file', photoReducer);
-
-                    axios.post('https://86f4-182-253-250-101.ngrok-free.app/api/user/photo',
-                        dataPhoto, {
-                        headers: {
-                            'Authorization': `Bearer ${res.data.data.access_token}`,
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    })
-                        .then((resUpload: any) => {
-                            console.log('Sukses Upload', resUpload)
-                        })
-                        .catch((err: any) => {
-                            showMessage('Error Upload', 'danger')
-                        })
-                }
-                showMessage('Sukses Register', 'success')
-                navigation.replace('SuccessSignUp')
-                dispatch(setLoading(false))
-            })
-            .catch((err: any) => {
-                showMessage('Error Register', 'danger')
-                dispatch(setLoading(false))
-            })
+        dispatch(signUpAction(dataRegister, photoReducer, navigation))
     }
 
 
@@ -66,7 +39,7 @@ const SignUpAddress = ({ navigation }: any) => {
                 <Header
                     title="Address"
                     subTitle="Make sure its valid"
-                    onBack={() => { }}
+                    onBack={() => { navigation.goBack() }}
                 />
                 <View style={styles.container}>
                     <TextInput

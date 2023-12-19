@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Number } from '..'
 
 type ItemValueProps = {
     label: string
     value: string
+    type: string
 }
 
-const ItemValue = ({ label, value }: ItemValueProps) => {
+const ItemValue = ({ label, value, type }: ItemValueProps) => {
     return (
         <View
             style={styles.container}
@@ -14,9 +16,10 @@ const ItemValue = ({ label, value }: ItemValueProps) => {
             <Text
                 style={styles.label}
             >{label}</Text>
-            <Text
-                style={styles.value}
-            >{value}</Text>
+            {type === 'currency' ?
+                <Number number={value} style={styles.value} />
+                :
+                <Text style={styles.value}>{value}</Text>}
         </View>
     )
 }

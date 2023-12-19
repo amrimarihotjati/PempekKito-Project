@@ -3,7 +3,7 @@ import React from 'react'
 import { Button, Header, ItemListFood, ItemValue } from '../../components'
 import { ScrollView } from 'react-native-gesture-handler'
 
-const OrderDetail = () => {
+const OrderDetail = ({ navigation }: any) => {
     return (
         <ScrollView>
             <View
@@ -12,7 +12,7 @@ const OrderDetail = () => {
                 <Header
                     title="Order Detail"
                     subTitle="Find your best Pempek"
-                    onBack={() => { }}
+                    onBack={() => { navigation.goBack() }}
                 />
                 <View
                     style={styles.content}

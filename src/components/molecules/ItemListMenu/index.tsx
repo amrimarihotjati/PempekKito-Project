@@ -1,18 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 type ItemListMenuProps = {
     label: string
+    onPress: () => void
 }
 
-const ItemListMenu = ({ label }: ItemListMenuProps) => {
+const ItemListMenu = ({ label, onPress }: ItemListMenuProps) => {
     return (
-        <View
-            style={styles.container}
+        <TouchableOpacity
+            onPress={onPress}
         >
-            <Text>{label}</Text>
-            <Text> • </Text>
-        </View>
+            <View
+                style={styles.container}
+            >
+                <Text>{label}</Text>
+                <Text> • </Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 

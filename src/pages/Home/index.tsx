@@ -1,14 +1,22 @@
 import { Image, StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native'
-import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { FoodCard, Gap, HomeProfile, HomeTabSection, Rating } from '../../components'
+import { useDispatch, useSelector } from 'react-redux';
+import { getFoodData } from '../../redux/action';
 
 
 
-const Home = () => {
+const Home = ({ navigation }: { navigation: any }) => {
+    const dispatch = useDispatch();
+    const { food } = useSelector((state: any) => state.homeReducer);
+
+    useEffect(() => {
+        console.log('Pemanggilan getFoodData');
+        dispatch(getFoodData());
+    }, []);
+
     return (
-        <ScrollView
-
-        >
+        <ScrollView >
             <View style={styles.page}>
                 <HomeProfile />
                 <View>
@@ -19,10 +27,17 @@ const Home = () => {
                             style={styles.foodCardContainer}
                         >
                             <Gap width={24} />
-                            <FoodCard image={require('../../assets/Dummy/pempek_1.jpeg')} />
-                            <FoodCard image={require('../../assets/Dummy/pempek_2.jpg')} />
-                            <FoodCard image={require('../../assets/Dummy/pempek_3.jpg')} />
-                            <FoodCard image={require('../../assets/Dummy/pempek_4.jpg')} />
+                            {food.map((item: any) => {
+                                return (
+                                    <FoodCard
+                                        key={item.id}
+                                        image={item.picturePatch}
+                                        name={item.name}
+                                        rating={item.rate}
+                                        onPress={() => navigation.navigate('FoodDetail', item)}
+                                    />
+                                )
+                            })}
                             <Gap width={24} />
                         </View>
                     </ScrollView>

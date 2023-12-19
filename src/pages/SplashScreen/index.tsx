@@ -1,14 +1,25 @@
 import { Image, SafeAreaView, StatusBar, Text, View } from "react-native";
 import { useEffect } from "react";
-
+import { getData } from "../../utils";
 
 
 export default function SplashScreen({ navigation }: any) {
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('Signin')
+            getData('token').then((res) => {
+                console.log('token', res);
+                if (res) {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'MainApp' }],
+                    })
+                } else {
+                    navigation.replace('Signin')
+                }
+            })
         }, 3000)
     }, [])
+
 
     return (
         <View

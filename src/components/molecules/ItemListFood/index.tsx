@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import Rating from '../Rating'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Number } from '../../molecules/index'
 
 // TYPE
 // 1. Product
@@ -33,9 +34,9 @@ const ItemListFood = ({
                             >{name}</Text>
                             <Text
                                 style={styles.price}
-                            >Rp. {price}</Text>
+                            >IDR. {price}</Text>
                         </View>
-                        <Rating rating={rating} />
+                        <Rating ratingNumber={rating} />
                     </>
                 )
 
@@ -99,11 +100,9 @@ const ItemListFood = ({
                             <Text
                                 style={styles.title}
                             >{name}</Text>
-                            <Text
-                                style={styles.price}
-                            >Rp. {price}</Text>
+                            <Number number={price} />
                         </View>
-                        <Rating />
+                        <Rating ratingNumber={rating} />
                     </>
                 )
         }
@@ -154,7 +153,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-Regular',
     },
     content: {
-        flex: 1
+        flex: 1,
     },
     items: {
         fontSize: 12,
