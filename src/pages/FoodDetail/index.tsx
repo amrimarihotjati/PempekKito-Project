@@ -1,6 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { Button, Counter, Number, Rating } from '../../components'
 import { getData } from '../../utils'
 
@@ -54,57 +54,63 @@ const FoodDetail = ({ navigation, route }: any) => {
                 source={{ uri: picturePatch }}
                 style={styles.cover}
             >
-                <TouchableOpacity
-                    style={styles.back}
-                    onPress={() => navigation.goBack()}
+                <View
+                    style={styles.closeButton}
                 >
-                    <Text>X</Text>
-                </TouchableOpacity>
-                <Text
-                    style={styles.textBack}
-                >Back</Text>
+                    <TouchableOpacity
+                        style={styles.back}
+                        onPress={() => navigation.goBack()}
+                    >
+                        <Text>X</Text>
+                    </TouchableOpacity>
+                    <Text
+                        style={styles.textBack}
+                    >Close</Text>
+                </View>
             </ImageBackground>
-            <View
+            <ScrollView
                 style={styles.containerContent}
             >
-                <View
-                    style={styles.mainContent}
-                >
-                    <View style={styles.productContaier}>
-                        <View>
-                            <Text
-                                style={styles.title}
-                            >{name}</Text>
-                            <Rating ratingNumber={rate} />
+                <View>
+                    <View
+                        style={styles.mainContent}
+                    >
+                        <View style={styles.productContaier}>
+                            <View>
+                                <Text
+                                    style={styles.title}
+                                >{name}</Text>
+                                <Rating ratingNumber={rate} />
+                            </View>
+                            <Counter onQuantityChange={onQuantityChange} />
                         </View>
-                        <Counter onQuantityChange={onQuantityChange} />
+                        <Text
+                            style={styles.desc}
+                        >{description}</Text>
+                        <Text
+                            style={styles.ingredients}
+                        >Ingredients</Text>
+                        <Text
+                            style={styles.desc}
+                        >{ingredients}</Text>
                     </View>
-                    <Text
-                        style={styles.desc}
-                    >{description}</Text>
-                    <Text
-                        style={styles.ingredients}
-                    >Ingredients</Text>
-                    <Text
-                        style={styles.desc}
-                    >{ingredients}</Text>
+                    <View
+                        style={styles.priceContainer}
+                    >
+                        <View>
+                            <Text>Total Price</Text>
+                            <Number
+                                number={totaItem * price} type='' style={styles.totalPrice} />
+                        </View>
+                        <View>
+                            <Button
+                                title="Order Now"
+                                OnPress={onOrder}
+                            />
+                        </View>
+                    </View>
                 </View>
-                <View
-                    style={styles.priceContainer}
-                >
-                    <View>
-                        <Text>Total Price</Text>
-                        <Number
-                            number={totaItem * price} type='' style={styles.totalPrice} />
-                    </View>
-                    <View>
-                        <Button
-                            title="Order Now"
-                            OnPress={onOrder}
-                        />
-                    </View>
-                </View>
-            </View>
+            </ScrollView>
         </View>
     )
 }
@@ -120,17 +126,27 @@ const styles = StyleSheet.create({
         paddingTop: 26,
         paddingLeft: 22,
     },
-    back: {
-        width: 30,
+    closeButton: {
+        width: 50,
         height: 30,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    back: {
+        width: 20,
+        height: 20,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
+        opacity: 0.7,
+
     },
     textBack: {
-        fontSize: 14,
+        fontSize: 10,
         fontFamily: 'Poppins-Medium',
         color: 'white',
+
     },
     title: {
         fontSize: 24,
@@ -158,6 +174,7 @@ const styles = StyleSheet.create({
     },
     mainContent: {
         flex: 1,
+        marginBottom: 20,
     },
     containerContent: {
         backgroundColor: 'white',

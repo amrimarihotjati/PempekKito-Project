@@ -9,15 +9,8 @@ import { WebView } from 'react-native-webview';
 
 const OrderSummary = ({ navigation, route }: any) => {
     const { item, transaction, userProfile } = route.params;
-    const [token, setToken] = useState('');
     const [isPaymentOpen, setIsPaymentOpen] = useState(false);
     const [paymentURL, setPaymentURL] = useState('https://google.com`');
-
-    useEffect(() => {
-        getData('token').then((res) => {
-            setToken(res.value);
-        })
-    })
 
     const onCheckout = () => {
         const data = {
@@ -26,20 +19,23 @@ const OrderSummary = ({ navigation, route }: any) => {
             quantity: transaction.totalItem,
             total: transaction.grandTotal,
             status: 'PENDING',
-        }
-        axios.post(`${BASE_API.url}/api/checkout`, data, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+        };
+        getData('token').then((resToken) => {
+            const token = resToken.value
+            axios.post(`${BASE_API.url}/api/checkout`, data, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then((res) => {
+                    console.log('checkout sukses', res)
+                    setIsPaymentOpen(true);
+                    setPaymentURL(res.data.data.payment_url)
+                })
+                .catch((err) => {
+                    console.log('checkout gagal', err)
+                })
         })
-            .then((res) => {
-                console.log('checkout sukses', res)
-                setIsPaymentOpen(true);
-                setPaymentURL(res.data.data.payment_url)
-            })
-            .catch((err) => {
-                console.log('checkout gagal', err)
-            })
     }
 
     const onNavChange = (state: any) => {

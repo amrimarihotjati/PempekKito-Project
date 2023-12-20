@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     appName: {
         fontSize: 24,
         fontFamily: 'Poppins-Medium',
-        color: '#FF7622'
+        color: '#da4453'
     },
     desc: {
         fontSize: 14,

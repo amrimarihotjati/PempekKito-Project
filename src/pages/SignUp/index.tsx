@@ -110,7 +110,7 @@ const SignUp = ({ navigation }: any) => {
                     />
                     <Gap height={24} />
                     <Button
-                        color="#FF7622"
+                        color="#da4453"
                         title="Continue"
                         textColor='black'
                         OnPress={onSignUp}

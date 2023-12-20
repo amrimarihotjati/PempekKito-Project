@@ -8,7 +8,7 @@ interface ButtonProps {
     OnPress?: () => void
 }
 
-const Button = ({ title, color = '#FF7622', textColor = 'white', OnPress }: ButtonProps) => {
+const Button = ({ title, color = '#da4453', textColor = 'white', OnPress }: ButtonProps) => {
 
     const styles = StyleSheet.create({
         container: {

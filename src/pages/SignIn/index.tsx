@@ -43,7 +43,7 @@ const Signin = ({ navigation }: any) => {
                 />
                 <Gap height={24} />
                 <Button
-                    color="#FF7622"
+                    color="#da4453"
                     title="Sign In"
                     textColor='black'
                     OnPress={onSignIn}

@@ -1,15 +1,26 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { EmptyOrder, Gap, Header, OrderTabSection } from '../../components'
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders } from '../../redux/action';
 
 const Order = () => {
-    const [isEmpty] = useState(false)
+    const [isEmpty] = useState(false);
+    const dispatch = useDispatch();
+    const { orders } = useSelector((state: any) => state.orderReducer);
+
+    useEffect(() => {
+        dispatch(getOrders())
+    }, [])
+
+    console.log(orders)
 
     return (
         <View
             style={styles.page}
         >
-            {isEmpty ? <EmptyOrder /> :
+
+            {orders.length < 1 ? <EmptyOrder /> :
                 <View
                     style={styles.container}
                 >

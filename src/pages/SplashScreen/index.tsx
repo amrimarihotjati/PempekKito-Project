@@ -27,20 +27,20 @@ export default function SplashScreen({ navigation }: any) {
                 flex: 1,
             }}
         >
-            <StatusBar backgroundColor={'#FF7622'} />
+            <StatusBar backgroundColor={'#da4453'} />
             <SafeAreaView
                 style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#FF7622',
+                    backgroundColor: '#da4453',
                     width: '100%',
                     height: '100%',
                 }}
             >
                 <View
                     style={{
-                        backgroundColor: '#FF7622',
+                        backgroundColor: '#da4453',
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: 20,

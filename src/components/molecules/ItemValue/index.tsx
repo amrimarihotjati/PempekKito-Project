@@ -4,8 +4,8 @@ import { Number } from '..'
 
 type ItemValueProps = {
     label: string
-    value: string
-    type: string
+    value: string | number
+    type: string | number
 }
 
 const ItemValue = ({ label, value, type }: ItemValueProps) => {
@@ -17,7 +17,7 @@ const ItemValue = ({ label, value, type }: ItemValueProps) => {
                 style={styles.label}
             >{label}</Text>
             {type === 'currency' ?
-                <Number number={value} style={styles.value} />
+                <Number number={value} style={styles.value} type='' />
                 :
                 <Text style={styles.value}>{value}</Text>}
         </View>

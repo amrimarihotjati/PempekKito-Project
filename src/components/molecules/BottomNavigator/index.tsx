@@ -122,7 +122,7 @@ const BottomNavigator = ({ state, descriptors, navigation }: any) => {
                             <Icon
                                 label={label}
                                 focused={isFocused} />
-                            <Text style={{ color: isFocused ? '#FF7622' : '#222' }}>
+                            <Text style={{ color: isFocused ? '#da4453' : '#222' }}>
                                 {label}
                             </Text>
                         </View>

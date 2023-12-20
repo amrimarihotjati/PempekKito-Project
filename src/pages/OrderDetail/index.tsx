@@ -2,8 +2,43 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Button, Header, ItemListFood, ItemValue } from '../../components'
 import { ScrollView } from 'react-native-gesture-handler'
+import { BASE_API } from '../../config'
+import axios from 'axios'
+import { getData } from '../../utils'
 
-const OrderDetail = ({ navigation }: any) => {
+const OrderDetail = ({ navigation, route }: any) => {
+    const item = route.params
+    const total = item.quantity * item.food.price
+    const tax = total / 100 * 10
+    const driver = 10000
+    const grandTotal = total + tax + driver
+
+    const onCancelOrder = () => {
+        const data = {
+            status: 'CANCELLED'
+        }
+
+        getData('token').then((res) => {
+            const token = res.value
+            axios.post(`${BASE_API.url}/api/transaction/${item.id}`, data, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then((res) => {
+                    console.log('Sukses Cancel Order')
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'MainApp' }],
+                    })
+                })
+                .catch((err) => {
+                    console.log('error cancel order', err)
+                })
+        })
+
+    }
+
     return (
         <ScrollView>
             <View
@@ -21,30 +56,34 @@ const OrderDetail = ({ navigation }: any) => {
                         style={styles.label}
                     >Item Ordered</Text>
                     <ItemListFood
-                        name="Pempek"
-                        price={20000}
-                        image={require('../../assets/Dummy/pempek_1.jpeg')}
-                        items={10}
+                        name={item.food.name}
+                        price={item.food.price}
+                        image={{ uri: item.food.picturePatch }}
+                        items={item.quantity}
                         type="order-summary"
                     />
                     <Text
                         style={styles.label}
                     >Details Transaction</Text>
                     <ItemValue
-                        label="Order ID"
-                        value="ID123"
+                        label={item.food.name}
+                        value={total}
+                        type="currency"
                     />
                     <ItemValue
-                        label="Items"
-                        value="10"
+                        label="Driver"
+                        value={driver}
+                        type="currency"
                     />
                     <ItemValue
-                        label="Price"
-                        value="ID123"
+                        label="Tax"
+                        value={tax}
+                        type="currency"
                     />
                     <ItemValue
-                        label="Payment"
-                        value="ID123"
+                        label="Total Price"
+                        value={grandTotal}
+                        type="currency"
                     />
                 </View>
                 <View
@@ -55,23 +94,29 @@ const OrderDetail = ({ navigation }: any) => {
                     >Deliver to:</Text>
                     <ItemValue
                         label="Name"
-                        value="Name"
+                        value={item.user.name}
+                        type={''}
                     />
                     <ItemValue
                         label="Phone"
-                        value="Phone"
+                        value={item.user.phoneNumber}
+                        type={''}
+
+                    />
+                    <ItemValue
+                        label="Address"
+                        value={item.user.address}
+                        type={''}
                     />
                     <ItemValue
                         label="House"
-                        value="House"
+                        value={item.user.house}
+                        type={''}
                     />
                     <ItemValue
                         label="City"
-                        value="City"
-                    />
-                    <ItemValue
-                        label="Postal Code"
-                        value="Postal Code"
+                        value={item.user.city}
+                        type={''}
                     />
                 </View>
 
@@ -82,8 +127,9 @@ const OrderDetail = ({ navigation }: any) => {
                         style={styles.label}
                     >Order Status :</Text>
                     <ItemValue
-                        label="#238924"
-                        value="Paid"
+                        label={`#${item.id}`}
+                        value={item.status}
+                        type={''}
                     />
                 </View>
                 <View
@@ -92,11 +138,13 @@ const OrderDetail = ({ navigation }: any) => {
                         marginTop: 24
                     }}
                 >
-                    <Button
-                        title="Cancel Order"
-                        color='#D9435E'
-                        OnPress={() => navigation.replace('SuccessOrder')}
-                    />
+                    {item.status === 'PENDING' && (
+                        <Button
+                            title="Cancel Order"
+                            color='#D9435E'
+                            OnPress={onCancelOrder}
+                        />
+                    )}
                 </View>
             </View>
         </ScrollView>

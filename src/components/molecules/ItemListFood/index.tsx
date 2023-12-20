@@ -66,30 +66,64 @@ const ItemListFood = ({
                             <Text
                                 style={styles.title}
                             >{name}</Text>
-                            <Text
-                                style={styles.price}
-                            >{items} items | Rp. {price}</Text>
+                            <View
+                                style={styles.priceContainer}
+                            >
+                                <Text
+                                    style={styles.price}
+                                >{items} items</Text>
+                                <Text> | </Text>
+                                <Number
+                                    style={styles.price}
+                                    number={price}
+                                    type="currency"
+                                />
+
+                            </View>
                         </View>
                     </>
                 )
             case 'past-orders':
+
+                const formatedDate = new Date(date).toLocaleDateString('id-ID', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+
                 return (
                     <>
-                        <View style={styles.content}>
-                            <Text
-                                style={styles.title}
-                            >{name}</Text>
-                            <Text
-                                style={styles.price}
-                            >{items} items | Rp. {price}</Text>
-                        </View>
-                        <View>
-                            <Text
-                                style={styles.date}
-                            >{date}</Text>
-                            <Text
-                                style={styles.status}
-                            >{status}</Text>
+                        <View style={styles.contentPastOrders}>
+                            <View>
+                                <Text
+                                    style={styles.title}
+                                >{name}</Text>
+                                <View
+                                    style={styles.priceContainer}
+                                >
+                                    <Text
+                                        style={styles.price}
+                                    >{items} items</Text>
+                                    <Text> | </Text>
+                                    <Number
+                                        style={styles.price}
+                                        number={price}
+                                        type="currency"
+                                    />
+                                </View>
+                            </View>
+                            <View>
+                                <Text
+                                    style={styles.date}
+                                >
+                                    {formatedDate}
+                                </Text>
+                                <Text
+                                    style={{
+                                        fontSize: 12,
+                                        fontFamily: 'Poppins-Bold',
+                                        color: status === 'CANCELLED' ? 'red' : 'green',
+                                    }}
+                                >
+                                    {status}
+                                </Text>
+                            </View>
                         </View>
                     </>
                 )
@@ -148,6 +182,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Poppins-Regular',
     },
+    priceContainer: {
+        flexDirection: 'row',
+        gap: 4,
+    },
     price: {
         fontSize: 12,
         fontFamily: 'Poppins-Regular',
@@ -155,17 +193,18 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
     },
+    contentPastOrders: {
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     items: {
         fontSize: 12,
         fontFamily: 'Poppins-Regular',
     },
     date: {
-        fontSize: 12,
+        fontSize: 10,
         fontFamily: 'Poppins-Regular',
     },
-    status: {
-        fontSize: 12,
-        fontFamily: 'Poppins-Regular',
-        color: 'red'
-    }
 })

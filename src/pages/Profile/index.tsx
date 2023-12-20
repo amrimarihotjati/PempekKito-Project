@@ -1,8 +1,25 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { Gap, ProfileTabSection } from '../../components'
+import { getData } from '../../utils'
+
+
+type userProfile = {
+    name: string,
+    email: string,
+    profile_photo_url: string
+}
+
 
 const Profile = () => {
+    const [dataProfile, setDataProfile] = useState<userProfile>({})
+
+    useEffect(() => {
+        getData('userProfile').then((res) => {
+            setDataProfile(res)
+        })
+    }, [])
+
     return (
         <View
             style={styles.page}
@@ -13,17 +30,17 @@ const Profile = () => {
                     <View style={styles.borderPhoto}>
                         <Image
                             style={styles.photoContainer}
-                            source={require('../../assets/Dummy/profile.png')}
+                            source={{ uri: dataProfile.profile_photo_url }}
                         />
                     </View>
                 </View>
                 <Gap height={20} />
                 <Text
                     style={styles.name}
-                >Amri Marihot Jati</Text>
+                >{dataProfile.name}</Text>
                 <Text
                     style={styles.email}
-                >amrimarihotjati@gmail.com</Text>
+                >{dataProfile.email}</Text>
             </View>
             <Gap height={40} />
             <ProfileTabSection />

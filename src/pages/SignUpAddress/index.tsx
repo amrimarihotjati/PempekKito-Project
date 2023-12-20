@@ -70,7 +70,7 @@ const SignUpAddress = ({ navigation }: any) => {
                     />
                     <Gap height={24} />
                     <Button
-                        color="#FF7622"
+                        color="#da4453"
                         title="Sign Up Now"
                         textColor='black'
                         OnPress={onSignUp}
