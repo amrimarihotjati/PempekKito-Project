@@ -51,7 +51,6 @@ const PastOrders = () => {
         dispatch(getPastOrders())
     }, [])
 
-    console.log('ini data past orders', pastOrders)
 
     return (
         <ScrollView>

@@ -17,7 +17,7 @@ export default function SplashScreen({ navigation }: any) {
                     navigation.replace('Signin')
                 }
             })
-        }, 3000)
+        }, 4000)
     }, [])
 
 
@@ -47,7 +47,7 @@ export default function SplashScreen({ navigation }: any) {
                     }}
                 >
                     <Image
-                        source={require('../../assets/Ilustration/Logo.png')}
+                        source={require('../../../android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png')}
                         style={{
                             width: 100,
                             height: 100

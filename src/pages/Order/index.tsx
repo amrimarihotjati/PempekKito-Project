@@ -13,7 +13,7 @@ const Order = () => {
         dispatch(getOrders())
     }, [])
 
-    console.log(orders)
+
 
     return (
         <View
@@ -41,6 +41,7 @@ export default Order
 const styles = StyleSheet.create({
     page: {
         flex: 1,
+        backgroundColor: 'white',
     },
     container: {
         flex: 1,

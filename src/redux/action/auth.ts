@@ -49,7 +49,6 @@ export const signUpAction = (dataRegister: dataRegister, photoReducer: photoRedu
                 user.profile_photo_url = `${BASE_API.url}/storage/${resUpload.data.data[0]}`
                 storeData('userProfile', user);
                 navigation.reset({index: 0, routes: [{name: 'SuccessSignUp'}]})('SuccessSignUp')
-                console.log('Sukses Upload', resUpload)
             })
             .catch((err: any) => {
                 showMessage('Error Upload', 'danger')
@@ -82,7 +81,7 @@ export const signInAction = (form: form, navigation: navigation) => (dispatch : 
             value: token
         });
         storeData('userProfile', res.data.data.user)
-        console.log('Sukses Login', user);
+     
         navigation.reset({index: 0, routes: [{name: 'MainApp'}]})
     })
     .catch((err) => {

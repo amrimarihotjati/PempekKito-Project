@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Account = () => {
     const navigation = useNavigation();
     const signOut = () => {
-        console.log('Sign Out');
+
         AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
             navigation.reset({
                 index: 0,
@@ -64,8 +64,8 @@ const renderTabBar = (props: any) => (
     <TabBar
         {...props}
         indicatorStyle={{
-            backgroundColor: 'black',
-            height: 1,
+            backgroundColor: '#da4453',
+            height: 2,
         }}
         style={{
             backgroundColor: 'white',
@@ -77,7 +77,7 @@ const renderTabBar = (props: any) => (
         tabStyle={{ width: 'auto' }}
         renderLabel={({ route, focused }) => (
             <Text
-                style={{ color: focused ? 'black' : 'grey' }}
+                style={{ color: focused ? '#da4453' : 'grey' }}
             >{route.title}</Text>
         )}
     />
@@ -99,6 +99,7 @@ const ProfileTabSection = () => {
             initialLayout={initialLayout}
             style={{
                 backgroundColor: 'white',
+                paddingHorizontal: 24,
             }}
         />
     )

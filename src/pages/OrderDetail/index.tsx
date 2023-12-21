@@ -26,7 +26,6 @@ const OrderDetail = ({ navigation, route }: any) => {
                 }
             })
                 .then((res) => {
-                    console.log('Sukses Cancel Order')
                     navigation.reset({
                         index: 0,
                         routes: [{ name: 'MainApp' }],

@@ -24,25 +24,28 @@ const Profile = () => {
         <View
             style={styles.page}
         >
-            <Gap height={40} />
-            <View style={styles.photo}>
-                <View style={styles.photoContainer}>
-                    <View style={styles.borderPhoto}>
-                        <Image
-                            style={styles.photoContainer}
-                            source={{ uri: dataProfile.profile_photo_url }}
-                        />
+            <View
+                style={styles.container}
+            >
+                <Gap height={50} />
+                <View style={styles.photo}>
+                    <View style={styles.photoContainer}>
+                        <View style={styles.borderPhoto}>
+                            <Image
+                                style={styles.photoContainer}
+                                source={{ uri: dataProfile.profile_photo_url }}
+                            />
+                        </View>
                     </View>
+                    <Gap height={20} />
+                    <Text
+                        style={styles.name}
+                    >{dataProfile.name}</Text>
+                    <Text
+                        style={styles.email}
+                    >{dataProfile.email}</Text>
                 </View>
-                <Gap height={20} />
-                <Text
-                    style={styles.name}
-                >{dataProfile.name}</Text>
-                <Text
-                    style={styles.email}
-                >{dataProfile.email}</Text>
             </View>
-            <Gap height={40} />
             <ProfileTabSection />
         </View>
     )
@@ -53,8 +56,16 @@ export default Profile
 const styles = StyleSheet.create({
     page: {
         flex: 1,
-        paddingHorizontal: 24,
         backgroundColor: 'white',
+    },
+    container: {
+        backgroundColor: '#da4453',
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        paddingHorizontal: 24,
+        borderBottomStartRadius: 20,
+        borderBottomEndRadius: 20,
     },
     photo: {
         alignItems: 'center',
@@ -82,12 +93,12 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
         fontFamily: 'Poppins-Medium',
-        color: '#020202'
+        color: 'white'
     },
     email: {
         fontSize: 12,
         fontFamily: 'Poppins-Light',
-        color: '#8D92A3'
+        color: 'white'
     }
 
 })

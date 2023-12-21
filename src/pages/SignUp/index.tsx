@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Button, Gap, Header, TextInput } from '../../components'
 import { showMessage, useFrom } from '../../utils'
 import { launchImageLibrary } from 'react-native-image-picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const SignUp = ({ navigation }: any) => {
@@ -61,12 +62,9 @@ const SignUp = ({ navigation }: any) => {
             contentContainerStyle={{ flexGrow: 1 }}
         >
             <View style={styles.page}>
-                <Header
-                    title="Sign Up"
-                    subTitle="Find your best Pempek"
-                    onBack={() => { navigation.goBack() }}
-                />
-                <View style={styles.container}>
+                <LinearGradient
+                    colors={['#da4453', '#ed5565']}
+                    style={styles.container}>
                     <TouchableOpacity
                         onPress={addPhoto}
                     >
@@ -110,12 +108,12 @@ const SignUp = ({ navigation }: any) => {
                     />
                     <Gap height={24} />
                     <Button
-                        color="#da4453"
+                        color="#48cfad"
                         title="Continue"
-                        textColor='black'
+                        textColor='white'
                         OnPress={onSignUp}
                     />
-                </View>
+                </LinearGradient>
             </View>
         </ScrollView>
     )
@@ -128,7 +126,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingHorizontal: 24,
         paddingVertical: 26,
-        marginTop: 24,
         flex: 1
     },
     page: {
@@ -157,7 +154,7 @@ const styles = StyleSheet.create({
         height: 110,
         borderRadius: 110 / 2,
         borderWidth: 1,
-        borderColor: '#8D92A3',
+        borderColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderStyle: 'dashed',

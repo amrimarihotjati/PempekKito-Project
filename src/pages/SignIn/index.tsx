@@ -1,9 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image, StatusBar, Text } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
-import { Button, Gap, Header, TextInput } from '../../components';
+import { AppLottieView, Button, Gap, TextInput } from '../../components';
 import { signInAction } from '../../redux/action/auth';
-import { getData, useFrom } from '../../utils';
-import { useEffect } from 'react';
+import { useFrom } from '../../utils';
 
 
 const Signin = ({ navigation }: any) => {
@@ -23,12 +23,18 @@ const Signin = ({ navigation }: any) => {
 
     return (
         <View style={styles.page}>
-            <Header
-                title="Sign In"
-                subTitle="Find your best Pempek" />
-            <View style={styles.container}>
+            <LinearGradient
+                colors={['#da4453', '#ed5565']}
+                style={styles.container}>
+                <StatusBar barStyle="light-content" backgroundColor={'#f95a6b'} />
+                <Image
+                    source={require('=../../../../pempekKito/src/assets/Ilustration/pempek_kito.png')}
+                    style={{ width: 250, height: 200, alignSelf: 'center' }}
+                    resizeMode='contain'
+
+                />
                 <TextInput
-                    label="Email Address"
+                    label="Email"
                     placeholder="Type your email address"
                     value={form.email}
                     onChangeText={(value) => setForm('email', value)}
@@ -43,17 +49,27 @@ const Signin = ({ navigation }: any) => {
                 />
                 <Gap height={24} />
                 <Button
-                    color="#da4453"
+                    color="#48cfad"
                     title="Sign In"
-                    textColor='black'
+                    textColor="white"
                     OnPress={onSignIn}
                 />
                 <Gap height={12} />
-                <Button
-                    OnPress={() => navigation.navigate('Signup')}
-                    color='#8D92A3'
-                    title="Create New Account" />
-            </View>
+                <View
+                    style={styles.containerText}
+                >
+                    <Text
+                        style={styles.text}
+                    >
+                        Belum mempunyai akun?
+                    </Text>
+                    <Gap width={4} />
+                    <Text
+                        style={styles.textSignUp}
+                        onPress={() => navigation.navigate('Signup')}
+                    >Daftar akun</Text>
+                </View>
+            </LinearGradient>
         </View>
     )
 }
@@ -62,13 +78,23 @@ export default Signin
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
         paddingHorizontal: 24,
         paddingVertical: 26,
-        marginTop: 24,
         flex: 1
     },
     page: {
         flex: 1
+    },
+    containerText: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    text: {
+        color: 'white',
+    },
+    textSignUp: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 16
     }
 })

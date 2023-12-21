@@ -30,12 +30,14 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 16,
         fontFamily: 'Poppins-Regular',
-        color: '#020202',
+        color: 'white',
     },
     input: {
         borderWidth: 1,
-        borderColor: '#020202',
+        borderColor: 'white',
         borderRadius: 8,
         padding: 10,
+        color: 'black',
+        backgroundColor: 'white',
     }
 })

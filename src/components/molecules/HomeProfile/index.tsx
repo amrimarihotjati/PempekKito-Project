@@ -2,9 +2,16 @@ import { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { getData } from '../../../utils'
 
+type Iuser = {
+    name: string,
+    email: string,
+    profile_photo_url: string
+}
+
 
 const HomeProfile = () => {
     const [photo, setPhoto] = useState('http://foodmarketcms.test/storage/assets/user/wTdpLFI4Fv4TiYMuuzvZqwqWiOFWqt1x5iV7e97w.jpg');
+    const [dataProfile, setDataProfile] = useState<Iuser>({} as Iuser);
 
     console.log(photo)
 
@@ -12,6 +19,7 @@ const HomeProfile = () => {
         getData('userProfile').then((res) => {
             console.log(res)
             setPhoto(res.profile_photo_url);
+            setDataProfile(res);
         })
     }, [])
 
@@ -19,18 +27,31 @@ const HomeProfile = () => {
         <View
             style={styles.profileContainer}
         >
-            <View>
-                <Text
-                    style={styles.appName}
-                >Pempek Kito</Text>
-                <Text
-                    style={styles.desc}
-                >Lets get some Pempek</Text>
+            <View
+                style={{ flexDirection: 'row', gap: 16 }}
+            >
+                <Image
+                    style={styles.profile}
+                    source={{ uri: photo }}
+                    resizeMode="cover"
+                />
+                <View
+                    style={{ gap: -5, justifyContent: 'center' }}
+                >
+                    <Text
+                        style={styles.desc}
+                    >Hallo,</Text>
+                    <Text
+                        style={styles.name}
+                    >
+                        {dataProfile.name}
+                    </Text>
+                </View>
             </View>
             <Image
-                style={styles.profile}
-                source={{ uri: photo }}
-                resizeMode="cover"
+                source={require('../../../assets/Ilustration/pempek_kito.png')}
+                style={{ width: 100, height: 50 }}
+                resizeMode="contain"
             />
         </View>
     )
@@ -51,16 +72,18 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingTop: 32,
         paddingBottom: 24,
-        backgroundColor: 'white'
+        backgroundColor: '#da4453',
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20
     },
-    appName: {
-        fontSize: 24,
+    name: {
+        fontSize: 15,
         fontFamily: 'Poppins-Medium',
-        color: '#da4453'
+        color: 'white'
     },
     desc: {
         fontSize: 14,
         fontFamily: 'Poppins-Light',
-        color: '#8D92A3'
+        color: 'white'
     },
 })

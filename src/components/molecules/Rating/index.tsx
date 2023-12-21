@@ -44,6 +44,8 @@ export default Rating
 const styles = StyleSheet.create({
     ratingContainer: {
         flexDirection: 'row',
+        alignItems: 'center',
+        gap: 5
     },
     startContainer: {
         flexDirection: 'row',

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native'
+import { Image, StyleSheet, Text, View, ScrollView, Dimensions, TouchableOpacity, StatusBar } from 'react-native'
 import { useEffect } from 'react'
 import { FoodCard, Gap, HomeProfile, HomeTabSection, Rating } from '../../components'
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,14 +11,24 @@ const Home = ({ navigation }: { navigation: any }) => {
     const { food } = useSelector((state: any) => state.homeReducer);
 
     useEffect(() => {
-        console.log('Pemanggilan getFoodData');
+
         dispatch(getFoodData());
     }, []);
 
     return (
         <ScrollView >
             <View style={styles.page}>
+                <StatusBar barStyle="light-content" backgroundColor={'#f95a6b'} />
                 <HomeProfile />
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Order')}
+                >
+                    <Image
+                        source={require('../../assets/Ilustration/recomended_slider1.png')}
+                        style={{ width: Dimensions.get('window').width, height: 200, resizeMode: 'contain' }}
+                    />
+                </TouchableOpacity>
+                <Gap height={15} />
                 <View>
                     <ScrollView
                         horizontal
@@ -58,7 +68,7 @@ const styles = StyleSheet.create({
     },
     foodCardContainer: {
         flexDirection: 'row',
-        marginVertical: 24
+        marginBottom: 24
     },
     tabContainer: {
         flex: 1,

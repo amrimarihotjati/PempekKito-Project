@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Gap, Header, Select, TextInput } from '../../components'
 import { setLoading, signUpAction } from '../../redux/action/index'
 import { useFrom } from '../../utils'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 const SignUpAddress = ({ navigation }: any) => {
@@ -20,12 +21,12 @@ const SignUpAddress = ({ navigation }: any) => {
 
 
     const onSignUp = () => {
-        // console.log('Click SignUp', form)
+
         const dataRegister = {
             ...form,
             ...registerReducer
         }
-        // console.log('full data register', dataRegister)
+
         dispatch(setLoading(true))
         dispatch(signUpAction(dataRegister, photoReducer, navigation))
     }
@@ -36,12 +37,9 @@ const SignUpAddress = ({ navigation }: any) => {
             contentContainerStyle={{ flexGrow: 1 }}
         >
             <View style={styles.page}>
-                <Header
-                    title="Address"
-                    subTitle="Make sure its valid"
-                    onBack={() => { navigation.goBack() }}
-                />
-                <View style={styles.container}>
+                <LinearGradient
+                    colors={['#da4453', '#ed5565']}
+                    style={styles.container}>
                     <TextInput
                         label="Phone Number"
                         placeholder="Type your phone number"
@@ -70,12 +68,12 @@ const SignUpAddress = ({ navigation }: any) => {
                     />
                     <Gap height={24} />
                     <Button
-                        color="#da4453"
+                        color="#48cfad"
                         title="Sign Up Now"
-                        textColor='black'
+                        textColor='white'
                         OnPress={onSignUp}
                     />
-                </View>
+                </LinearGradient>
             </View>
         </ScrollView>
     )
@@ -88,7 +86,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingHorizontal: 24,
         paddingVertical: 26,
-        marginTop: 24,
         flex: 1
     },
     page: {

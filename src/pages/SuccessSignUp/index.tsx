@@ -16,7 +16,7 @@ const SuccessSignUp = ({ navigation }: any) => {
             />
             <Text
                 style={styles.title}
-            >Yeay Completed!</Text>
+            >Daftar Akun Berhasil!</Text>
             <Text
                 style={styles.subtitle}
             >Now you can order, some Pempeks as a self-reward</Text>

@@ -43,24 +43,22 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         fontFamily: 'Poppins-Medium',
-        color: '#020202',
+        color: 'white',
     },
-
     subTitle: {
         fontSize: 14,
         fontFamily: 'Poppins-Light',
-        color: '#8D92A3',
+        color: 'white',
     },
-
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#da4453',
         paddingHorizontal: 24,
         paddingTop: 30,
         paddingBottom: 24,
         flexDirection: 'row',
         alignItems: 'center',
+        borderBottomStartRadius: 20,
     },
-
     arrowBack: {
         width: 20,
         height: 20,

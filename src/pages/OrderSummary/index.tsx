@@ -28,7 +28,7 @@ const OrderSummary = ({ navigation, route }: any) => {
                 }
             })
                 .then((res) => {
-                    console.log('checkout sukses', res)
+
                     setIsPaymentOpen(true);
                     setPaymentURL(res.data.data.payment_url)
                 })
@@ -68,14 +68,16 @@ const OrderSummary = ({ navigation, route }: any) => {
     }
 
     return (
-        <ScrollView>
+        <View
+            style={styles.page}
+        >
+            <Header
+                title="Order Summary"
+                subTitle="Find your best Pempek"
+                onBack={() => { navigation.goBack() }}
+            />
+            <ScrollView>
 
-            <View>
-                <Header
-                    title="Order Summary"
-                    subTitle="Find your best Pempek"
-                    onBack={() => { navigation.goBack() }}
-                />
                 <View
                     style={styles.content}
                 >
@@ -151,14 +153,18 @@ const OrderSummary = ({ navigation, route }: any) => {
                         OnPress={onCheckout}
                     />
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 
 export default OrderSummary
 
 const styles = StyleSheet.create({
+    page: {
+        backgroundColor: 'white',
+        flex: 1
+    },
     content: {
         backgroundColor: 'white',
         paddingHorizontal: 24,

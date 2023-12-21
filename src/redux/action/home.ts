@@ -4,7 +4,6 @@ import axios from "axios"
 export const getFoodData = () => (dispatch: any) => {
     axios.get(`${BASE_API.url}/api/food`)
     .then((res) => {
-        // console.log('ini adalah data food', res.data.data.data);
         dispatch({
             type: 'SET_FOOD',
             value: res.data.data.data

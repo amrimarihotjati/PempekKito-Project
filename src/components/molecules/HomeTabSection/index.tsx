@@ -121,8 +121,8 @@ const renderTabBar = (props: any) => (
     <TabBar
         {...props}
         indicatorStyle={{
-            backgroundColor: 'black',
-            height: 1,
+            backgroundColor: '#da4453',
+            height: 2,
         }}
         style={{
             backgroundColor: 'white',
@@ -131,11 +131,17 @@ const renderTabBar = (props: any) => (
             borderBottomColor: '#F2F2F2',
             borderBottomWidth: 1,
         }}
-        tabStyle={{ width: 'auto' }}
+        tabStyle={{ width: Dimensions.get('window').width / 3 }}
         renderLabel={({ route, focused }) => (
             <Text
-                style={{ color: focused ? 'black' : 'grey' }}
+                style={{ color: focused ? '#da4453' : 'grey' }}
             >{route.title}</Text>
+        )}
+        renderIcon={({ route, focused, color }) => (
+            <Image
+                source={route.icon}
+                style={{ tintColor: focused ? '#da4453' : 'grey', width: 24, height: 24 }}
+            />
         )}
     />
 )
@@ -144,9 +150,9 @@ const HomeTabSection = () => {
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: '1', title: 'New Taste' },
-        { key: '2', title: 'Popular' },
-        { key: '3', title: 'Recomended' },
+        { key: '1', title: 'New Taste', icon: require('../../../assets/Icon/new_taste.png') },
+        { key: '2', title: 'Popular', icon: require('../../../assets/Icon/popular.png') },
+        { key: '3', title: 'Recommended', icon: require('../../../assets/Icon/recomended.png') },
     ]);
 
     return (

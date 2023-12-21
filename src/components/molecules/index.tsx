@@ -13,6 +13,7 @@ import ProfileTabSection from "./ProfileTabSection";
 import ItemListMenu from "./ItemListMenu";
 import Loading from "./Loading";
 import Number from "./Number";
+import AppLottieView from "./AppLottieView";
 
 export {
     Header,
@@ -29,5 +30,6 @@ export {
     ProfileTabSection,
     ItemListMenu,
     Loading,
-    Number
+    Number,
+    AppLottieView
 }
