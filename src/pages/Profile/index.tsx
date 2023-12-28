@@ -20,6 +20,8 @@ const Profile = () => {
         })
     }, [])
 
+    console.log(dataProfile.profile_photo_url)
+
     return (
         <View
             style={styles.page}

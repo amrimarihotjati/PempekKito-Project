@@ -23,11 +23,16 @@ const Account = () => {
                 paddingTop: 8,
             }}
         >
-            <ItemListMenu label="Edit Profile" />
-            <ItemListMenu label="Home Address" />
-            <ItemListMenu label="Security" />
-            <ItemListMenu label="Payment" />
-            <ItemListMenu label="Sign Out" onPress={signOut} />
+            <ItemListMenu
+                label="Edit Profil" />
+            <ItemListMenu
+                label="Alamat" />
+            <ItemListMenu
+                label="Keamanan" />
+            <ItemListMenu
+                label="Pembayaran" />
+            <ItemListMenu
+                label="Keluar" onPress={signOut} />
         </View>
     )
 };
@@ -42,10 +47,14 @@ const FoodMarket = () => {
                 gap: 8,
             }}
         >
-            <ItemListMenu label="Rate App" />
-            <ItemListMenu label="Help Center" />
-            <ItemListMenu label="Privacy & Policy" />
-            <ItemListMenu label="Term & Conditions" />
+            <ItemListMenu
+                label="Nilai Aplikasi" />
+            <ItemListMenu
+                label="Bantuan" />
+            <ItemListMenu
+                label="Privacy & Policy" />
+            <ItemListMenu
+                label="Term & Conditions" />
         </View>
     )
 };
@@ -86,8 +95,8 @@ const renderTabBar = (props: any) => (
 const ProfileTabSection = () => {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: '1', title: 'Account' },
-        { key: '2', title: 'Food Market' },
+        { key: '1', title: 'Akun' },
+        { key: '2', title: 'Pengaturan' },
     ]);
 
     return (

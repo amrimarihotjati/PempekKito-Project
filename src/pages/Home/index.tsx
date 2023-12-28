@@ -11,7 +11,6 @@ const Home = ({ navigation }: { navigation: any }) => {
     const { food } = useSelector((state: any) => state.homeReducer);
 
     useEffect(() => {
-
         dispatch(getFoodData());
     }, []);
 
@@ -28,6 +27,9 @@ const Home = ({ navigation }: { navigation: any }) => {
                         style={{ width: Dimensions.get('window').width, height: 200, resizeMode: 'contain' }}
                     />
                 </TouchableOpacity>
+                <View style={styles.tabContainer}>
+                    <HomeTabSection />
+                </View>
                 <Gap height={15} />
                 <View>
                     <ScrollView
@@ -52,9 +54,7 @@ const Home = ({ navigation }: { navigation: any }) => {
                         </View>
                     </ScrollView>
                 </View>
-                <View style={styles.tabContainer}>
-                    <HomeTabSection />
-                </View>
+
             </View>
         </ScrollView>
     )

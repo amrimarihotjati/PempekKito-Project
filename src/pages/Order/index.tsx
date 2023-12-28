@@ -25,8 +25,8 @@ const Order = () => {
                     style={styles.container}
                 >
                     <Header
-                        title="Your Orders"
-                        subTitle="Find your best Pempek"
+                        title="Pesanan Anda"
+                        subTitle="Pantau pesananmu"
                     />
                     <Gap height={16} />
                     <OrderTabSection />

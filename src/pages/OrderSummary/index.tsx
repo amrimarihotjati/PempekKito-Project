@@ -51,8 +51,8 @@ const OrderSummary = ({ navigation, route }: any) => {
         return (
             <>
                 <Header
-                    title="Payment"
-                    subTitle="Pay your order"
+                    title="Pembayaran"
+                    subTitle="Selesaikan Pembayaran Pesanan"
                     onBack={() => { setIsPaymentOpen(false) }}
                 />
                 <WebView
@@ -72,8 +72,8 @@ const OrderSummary = ({ navigation, route }: any) => {
             style={styles.page}
         >
             <Header
-                title="Order Summary"
-                subTitle="Find your best Pempek"
+                title="Rincian Pesanan"
+                subTitle="Periksa pesanan pempek anda"
                 onBack={() => { navigation.goBack() }}
             />
             <ScrollView>
@@ -83,7 +83,7 @@ const OrderSummary = ({ navigation, route }: any) => {
                 >
                     <Text
                         style={styles.label}
-                    >Item Ordered</Text>
+                    >Pesanan</Text>
                     <ItemListFood
                         name={item.name}
                         price={item.price}
@@ -93,24 +93,24 @@ const OrderSummary = ({ navigation, route }: any) => {
                     />
                     <Text
                         style={styles.label}
-                    >Details Transaction</Text>
+                    >Rincian Pesanan</Text>
                     <ItemValue
                         label={item.name}
                         value={transaction.totalPrice}
                         type="currency"
                     />
                     <ItemValue
-                        label="Driver"
+                        label="Kurir"
                         value={transaction.driver}
                         type='currency'
                     />
                     <ItemValue
-                        label="Tax 10%"
+                        label="Pajak 10%"
                         value={transaction.tax}
                         type='currency'
                     />
                     <ItemValue
-                        label="Total Price"
+                        label="Total Harga"
                         value={transaction.grandTotal}
                         type='currency'
                     />
@@ -122,22 +122,22 @@ const OrderSummary = ({ navigation, route }: any) => {
                         style={styles.label}
                     >Deliver to:</Text>
                     <ItemValue
-                        label="Name"
+                        label="Nama"
                         value={userProfile.name}
                         type='name'
                     />
                     <ItemValue
-                        label="Phone No"
+                        label="Nomor HP"
                         value={userProfile.phoneNumber}
                         type='phone'
                     />
                     <ItemValue
-                        label="Address"
+                        label="Alamat"
                         value={userProfile.address}
                         type='address'
                     />
                     <ItemValue
-                        label="House No"
+                        label="Nomor Rumah"
                         value={userProfile.houseNumber}
                         type='address'
                     />
@@ -149,7 +149,7 @@ const OrderSummary = ({ navigation, route }: any) => {
                     }}
                 >
                     <Button
-                        title="Checkout Now"
+                        title="Bayar Pesanan"
                         OnPress={onCheckout}
                     />
                 </View>

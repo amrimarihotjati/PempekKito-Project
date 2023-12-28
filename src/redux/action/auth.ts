@@ -34,10 +34,17 @@ export const signUpAction = (dataRegister: dataRegister, photoReducer: photoRedu
         //simpan access token
         storeData('token', {value: token});
 
+        
+
         if (photoReducer.isUploadPhoto) {
             const dataPhoto = new FormData();
             dataPhoto.append('file', photoReducer);
+
+            console.log('proses uplaod')
             
+            console.log('photo reducer', photoReducer.isUploadPhoto)
+            console.log('data photo', photoReducer.photo)
+
             axios.post(`${BASE_API.url}/api/user/photo`,
             dataPhoto, {
                 headers: {

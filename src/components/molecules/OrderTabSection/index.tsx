@@ -118,8 +118,8 @@ const OrderTabSection = () => {
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: '1', title: 'In Progress' },
-        { key: '2', title: 'Past Orders' },
+        { key: '1', title: 'Pesanan Berjalan' },
+        { key: '2', title: 'Pesanan Selesai' },
     ]);
 
     return (

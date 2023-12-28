@@ -5,7 +5,7 @@ const BottomNavigator = ({ state, descriptors, navigation }: any) => {
 
     const Icon = ({ label, focused }: any) => {
         switch (label) {
-            case 'Home':
+            case 'Beranda':
                 if (focused) {
                     return <Image
                         source={require('../../../assets/Icon/home_on.png')}
@@ -22,7 +22,7 @@ const BottomNavigator = ({ state, descriptors, navigation }: any) => {
                             height: 25
                         }} />
                 }
-            case 'Order':
+            case 'Pesanan':
                 if (focused) {
                     return <Image
                         source={require('../../../assets/Icon/order_on.png')}
@@ -40,7 +40,7 @@ const BottomNavigator = ({ state, descriptors, navigation }: any) => {
                         }}
                     />
                 }
-            case 'Profile':
+            case 'Profil':
                 if (focused) {
                     return <Image
                         source={require('../../../assets/Icon/user_on.png')}

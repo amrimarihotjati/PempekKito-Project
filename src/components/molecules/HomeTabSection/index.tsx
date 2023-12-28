@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
-import { useState, useEffect } from 'react'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
-import { ItemListFood, Rating } from '..';
 import { useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SceneMap, TabBar, TabView } from 'react-native-tab-view';
 import { useDispatch, useSelector } from 'react-redux';
+import { ItemListFood } from '..';
 import { getFoodDataByTypes } from '../../../redux/action';
 
 
@@ -24,18 +24,20 @@ const NewTaste = () => {
                 gap: 8,
             }}
         >
-            {newTaste.map((item: any) => {
-                return (
-                    <ItemListFood
-                        key={item.id}
-                        name={item.name}
-                        price={item.price}
-                        image={{ uri: item.picturePatch }}
-                        onPress={() => navigation.navigate('FoodDetail', item)}
-                        rating={item.rate}
-                    />
-                )
-            })}
+            <ScrollView>
+                {newTaste.map((item: any) => {
+                    return (
+                        <ItemListFood
+                            key={item.id}
+                            name={item.name}
+                            price={item.price}
+                            image={{ uri: item.picturePatch }}
+                            onPress={() => navigation.navigate('FoodDetail', item)}
+                            rating={item.rate}
+                        />
+                    )
+                })}
+            </ScrollView>
         </View>
     )
 };
@@ -150,9 +152,9 @@ const HomeTabSection = () => {
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: '1', title: 'New Taste', icon: require('../../../assets/Icon/new_taste.png') },
-        { key: '2', title: 'Popular', icon: require('../../../assets/Icon/popular.png') },
-        { key: '3', title: 'Recommended', icon: require('../../../assets/Icon/recomended.png') },
+        { key: '1', title: 'Terbaru', icon: require('../../../assets/Icon/new_taste.png') },
+        { key: '2', title: 'Populer', icon: require('../../../assets/Icon/popular.png') },
+        { key: '3', title: 'Rekomendasi', icon: require('../../../assets/Icon/recomended.png') },
     ]);
 
     return (

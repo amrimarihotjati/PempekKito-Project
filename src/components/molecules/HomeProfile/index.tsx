@@ -5,20 +5,18 @@ import { getData } from '../../../utils'
 type Iuser = {
     name: string,
     email: string,
-    profile_photo_url: string
+    profile_photo_url: string | null
 }
 
 
 const HomeProfile = () => {
-    const [photo, setPhoto] = useState('http://foodmarketcms.test/storage/assets/user/wTdpLFI4Fv4TiYMuuzvZqwqWiOFWqt1x5iV7e97w.jpg');
     const [dataProfile, setDataProfile] = useState<Iuser>({} as Iuser);
 
-    console.log(photo)
+    console.log(dataProfile.profile_photo_url)
 
     useEffect(() => {
         getData('userProfile').then((res) => {
             console.log(res)
-            setPhoto(res.profile_photo_url);
             setDataProfile(res);
         })
     }, [])
@@ -32,7 +30,7 @@ const HomeProfile = () => {
             >
                 <Image
                     style={styles.profile}
-                    source={{ uri: photo }}
+                    source={{ uri: dataProfile.profile_photo_url }}
                     resizeMode="cover"
                 />
                 <View
@@ -50,7 +48,7 @@ const HomeProfile = () => {
             </View>
             <Image
                 source={require('../../../assets/Ilustration/pempek_kito.png')}
-                style={{ width: 100, height: 50 }}
+                style={{ width: 90, height: 40, paddingBottom: 10 }}
                 resizeMode="contain"
             />
         </View>

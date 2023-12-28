@@ -15,17 +15,20 @@ const MainApp = () => {
             tabBar={props => <BottomNavigator {...props} />}
         >
             <Tab.Screen
-                name="Home"
+                name="Beranda"
                 component={Home}
-                options={{ headerShown: false }}
+                options={{
+                    headerShown: false,
+                }}
+
             />
             <Tab.Screen
-                name="Order"
+                name="Pesanan"
                 component={Order}
                 options={{ headerShown: false }}
             />
             <Tab.Screen
-                name="Profile"
+                name="Profil"
                 component={Profile}
                 options={{ headerShown: false }}
             />
@@ -41,7 +44,6 @@ const Router = () => {
                 component={SplashScreen}
                 options={{ headerShown: false }}
             />
-
             <Stack.Screen
                 name="Signin"
                 component={Signin}

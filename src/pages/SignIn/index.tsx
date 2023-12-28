@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { AppLottieView, Button, Gap, TextInput } from '../../components';
 import { signInAction } from '../../redux/action/auth';
 import { useFrom } from '../../utils';
+import { useEffect } from 'react';
 
 
 const Signin = ({ navigation }: any) => {
@@ -13,9 +14,16 @@ const Signin = ({ navigation }: any) => {
     const dispatch = useDispatch();
 
     const [form, setForm] = useFrom({
-        email: '',
-        password: '',
+        email: 'kitacoba@gmail.com',
+        password: 'kitacoba',
     });
+
+    // useEffect(() => {
+    //     setForm({
+    //         email: 'kitacoba@gmail.com',
+    //         password: 'kitacoba',
+    //     });
+    // }, []);
 
     const onSignIn = () => {
         dispatch(signInAction(form, navigation));
@@ -35,14 +43,14 @@ const Signin = ({ navigation }: any) => {
                 />
                 <TextInput
                     label="Email"
-                    placeholder="Type your email address"
+                    placeholder="Masukkan email anda"
                     value={form.email}
                     onChangeText={(value) => setForm('email', value)}
                 />
                 <Gap height={16} />
                 <TextInput
                     label="Password"
-                    placeholder="Type your password"
+                    placeholder="Masukkan password anda"
                     value={form.password}
                     onChangeText={(value) => setForm('password', value)}
                     secureTextEntry
@@ -50,7 +58,7 @@ const Signin = ({ navigation }: any) => {
                 <Gap height={24} />
                 <Button
                     color="#48cfad"
-                    title="Sign In"
+                    title="Masuk"
                     textColor="white"
                     OnPress={onSignIn}
                 />

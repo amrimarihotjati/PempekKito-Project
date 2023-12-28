@@ -45,7 +45,7 @@ const OrderDetail = ({ navigation, route }: any) => {
             >
                 <Header
                     title="Order Detail"
-                    subTitle="Find your best Pempek"
+                    subTitle="Detail pesanan pempek anda"
                     onBack={() => { navigation.goBack() }}
                 />
                 <View
@@ -53,7 +53,7 @@ const OrderDetail = ({ navigation, route }: any) => {
                 >
                     <Text
                         style={styles.label}
-                    >Item Ordered</Text>
+                    >Pesanan</Text>
                     <ItemListFood
                         name={item.food.name}
                         price={item.food.price}
@@ -63,24 +63,24 @@ const OrderDetail = ({ navigation, route }: any) => {
                     />
                     <Text
                         style={styles.label}
-                    >Details Transaction</Text>
+                    >Rincian Pesanan</Text>
                     <ItemValue
                         label={item.food.name}
                         value={total}
                         type="currency"
                     />
                     <ItemValue
-                        label="Driver"
+                        label="Kurir"
                         value={driver}
                         type="currency"
                     />
                     <ItemValue
-                        label="Tax"
+                        label="Pajak"
                         value={tax}
                         type="currency"
                     />
                     <ItemValue
-                        label="Total Price"
+                        label="Total Harga"
                         value={grandTotal}
                         type="currency"
                     />
@@ -139,7 +139,7 @@ const OrderDetail = ({ navigation, route }: any) => {
                 >
                     {item.status === 'PENDING' && (
                         <Button
-                            title="Cancel Order"
+                            title="Batalkan Pesanan"
                             color='#D9435E'
                             OnPress={onCancelOrder}
                         />

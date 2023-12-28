@@ -1,45 +1,74 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StatusBar, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Button, Gap } from '../../components'
+import LinearGradient from 'react-native-linear-gradient'
 
 const SuccessOrder = ({ navigation }: any) => {
     return (
-        <View
+        <LinearGradient
+            colors={['#da4453', '#ed5565']}
             style={styles.page}
         >
-            <Image
-                source={require('../../assets/Ilustration/Success_SignUp.png')}
-                style={{
-                    width: 250,
-                    height: 250
-                }}
-            />
-            <Text
-                style={styles.title}
-            >You're Order</Text>
-            <Text
-                style={styles.subtitle}
-            >Just Stay</Text>
-            <Gap height={40} />
             <View
-                style={styles.button}
+                style={styles.page}
             >
-                <Button
-                    title="Order Other Pempek"
-                    OnPress={() => navigation.replace('MainApp')}
+                <StatusBar barStyle="light-content" backgroundColor={'#f95a6b'} />
+                <Image
+                    source={require('../../assets/Ilustration/success_order.png')}
+                    style={{
+                        width: 250,
+                        height: 250,
+                        resizeMode: 'contain',
+                    }}
                 />
+                <Text
+                    style={styles.title}
+                >Pesanan Berhasil!</Text>
+                <Text
+                    style={styles.subtitle}
+                >Silahkan tunggu, kami akan mengirimkan pesanan anda</Text>
+                <Gap height={40} />
+                <View
+                    style={styles.button}
+                >
+                    <Button
+                        title="Lihat Orderan Saya"
+                        OnPress={() => navigation.replace('MainApp', { screen: 'Order' })}
+                        color="#ffce54"
+                        textColor="black"
+                    />
+                </View>
+                <TouchableOpacity
+                    onPress={() => navigation.replace('MainApp')}
+                    activeOpacity={0.7}
+                >
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: 5
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: 'white',
+                            }}
+                        >
+                            Masih belum cukup?
+                        </Text>
+                        <Text
+                            style={{
+                                color: 'white',
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            pesan pempek lagi.
+                        </Text>
+                    </View>
+                </TouchableOpacity>
             </View>
-            <View
-                style={styles.button}
-            >
-                <Button
-                    title="Visit My Order"
-                    OnPress={() => navigation.replace('MainApp', { screen: 'Order' })}
-                    color="#8D92A3"
-                    textColor="white"
-                />
-            </View>
-        </View>
+        </LinearGradient>
     )
 }
 
@@ -54,13 +83,16 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontFamily: 'Poppins-Medium',
-        marginTop: 20
+        marginTop: 20,
+        color: 'white',
     },
     subtitle: {
         fontSize: 14,
         fontFamily: 'Poppins-Light',
         marginTop: 10,
         textAlign: 'center',
+        paddingHorizontal: 30,
+        color: 'white',
     },
     button: {
         width: '70%',

@@ -54,7 +54,7 @@ const ItemListFood = ({
                         <Text
                             style={styles.items}
                         >
-                            {items} items
+                            {items} pempek
                         </Text>
                     </>
                 )
@@ -71,7 +71,7 @@ const ItemListFood = ({
                             >
                                 <Text
                                     style={styles.price}
-                                >{items} items</Text>
+                                >{items} pempek</Text>
                                 <Text> | </Text>
                                 <Number
                                     style={styles.price}
@@ -99,7 +99,7 @@ const ItemListFood = ({
                                 >
                                     <Text
                                         style={styles.price}
-                                    >{items} items</Text>
+                                    >{items} pempek</Text>
                                     <Text> | </Text>
                                     <Number
                                         style={styles.price}

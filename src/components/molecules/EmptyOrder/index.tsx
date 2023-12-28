@@ -11,7 +11,7 @@ const EmptyOrder = () => {
             style={styles.page}
         >
             <Image
-                source={require('../../../assets/Ilustration/Success_SignUp.png')}
+                source={require('../../../assets/Ilustration/empty_order.png')}
                 style={{
                     width: 250,
                     height: 250
@@ -22,13 +22,15 @@ const EmptyOrder = () => {
             >Belum Ada Pemesanan</Text>
             <Text
                 style={styles.subtitle}
-            >Belum pesan pempek? yuk cari sekarang</Text>
+            >Belum pesan pempek? yuk pesan sekarang</Text>
             <Gap height={40} />
             <View
                 style={styles.button}
             >
                 <Button
                     title="Cari Pempek"
+                    color="#ffce54"
+                    textColor="black"
                     OnPress={() => navigation.replace('MainApp')}
                 />
             </View>
@@ -42,23 +44,26 @@ const styles = StyleSheet.create({
     page: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#da4453'
     },
     title: {
         fontSize: 20,
         fontFamily: 'Poppins-Medium',
-        marginTop: 20
+        marginTop: 20,
+        color: 'white',
     },
     subtitle: {
         fontSize: 14,
         fontFamily: 'Poppins-Light',
         marginTop: 10,
         textAlign: 'center',
+        color: 'white',
     },
     button: {
         width: '70%',
         paddingHorizontal: 20,
-        marginBottom: 10
+        marginBottom: 10,
     }
 
 })

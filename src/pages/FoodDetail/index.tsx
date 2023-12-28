@@ -65,7 +65,7 @@ const FoodDetail = ({ navigation, route }: any) => {
                     </TouchableOpacity>
                     <Text
                         style={styles.textBack}
-                    >Close</Text>
+                    >Tutup</Text>
                 </View>
             </ImageBackground>
             <ScrollView
@@ -89,7 +89,7 @@ const FoodDetail = ({ navigation, route }: any) => {
                         >{description}</Text>
                         <Text
                             style={styles.ingredients}
-                        >Ingredients</Text>
+                        >Bahan</Text>
                         <Text
                             style={styles.desc}
                         >{ingredients}</Text>
@@ -98,13 +98,13 @@ const FoodDetail = ({ navigation, route }: any) => {
                         style={styles.priceContainer}
                     >
                         <View>
-                            <Text>Total Price</Text>
+                            <Text>Total Harga</Text>
                             <Number
                                 number={totaItem * price} type='' style={styles.totalPrice} />
                         </View>
                         <View>
                             <Button
-                                title="Order Now"
+                                title="Pesan Sekarang"
                                 OnPress={onOrder}
                             />
                         </View>

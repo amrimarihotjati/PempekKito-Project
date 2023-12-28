@@ -24,7 +24,7 @@ const initPhoto = {
     uri: '',
     type: '',
     name: '',
-    isUploadPhoto: false,
+    isUploadPhoto: true,
 }
 
 export const photoReducer = (state=initPhoto, action : any) => {
